@@ -1,0 +1,6 @@
+<!--components/search/search.wxml-->
+<view class="container">
+ <i class="iconfont icon-sousuotianchong"></i>   
+<input class="bar" placeholder="{{placeholder}}" placeholder-class="inBar"/>
+<button class="search">搜索</button>
+</view>

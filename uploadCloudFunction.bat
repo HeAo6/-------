@@ -1,0 +1,1 @@
+"E:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-6g57yqtg9389de25 --n quickstartFunctions --r --project "E:\编程1\微信小程序\wx-imooc" --report_first --report

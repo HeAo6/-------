@@ -1,0 +1,16 @@
+<!--components/musicList/musicList.wxml-->
+<block wx:for="{{musicList}}" wx:key="id">
+ <view iew class="container {{item.id ===playingId ? 'playing' : '' }} " bindtap="onSelect" data-musicid="{{item.id}}" data-index="{{index}}">
+ <view class="index">{{index+1}}</view>
+ <view class="info">
+ <view class="name">{{item.name}}
+ <text>{{item.alia.length ==0 ?"":'-'+item.alia[0]}}</text>
+ </view>
+ <view class="singer">
+ {{item.ar[0].name}} -- {{item.al.name}}
+ </view>
+  </view>
+ </view>
+ 
+</block>
+ 

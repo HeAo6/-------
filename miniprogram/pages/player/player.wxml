@@ -1,0 +1,30 @@
+<!--pages/player/player.wxml-->
+<view class="container" style="background:url({{picUrl}}) center/cover no-repeat"></view>
+<view class="mask"></view>
+<view class="info">
+<!-- 封面信息 -->
+    <view class="disc {{isPlaying ? 'play' : ''}}"  hidden="{{isLyric}}" bindtap="onChangeLyric">
+ <image class="playingImg rotation {{isPlaying ? '' : 'rotationPause'}}" src="{{picUrl}}"></image>
+</view>
+<!-- 歌词 -->
+
+<x-lyric class="lyric" isLyric="{{!isLyric}}" bindtap="onChangeLyric" lyric="{{lyric}}" > </x-lyric>
+
+<!-- 进度条组件 -->
+<view class="progressBar">
+    <x-progress-bar bindmusicEnd="onNext"
+    bindtimeUpdate="timeUpdate"
+    bindonPause="onPause"
+    bindonPlay="onPlay"
+    isSame="{{isSame}}"
+    ></x-progress-bar>
+    </view>
+
+ <!-- 控制面板 -->
+ <view class="control">
+  <text class="iconfont icon-shangyishou" bindtap="onPrev"></text>
+  <text class="iconfont {{isPlaying ? 'icon-zanting': 'icon-24gl-playCircle'}}" bindtap="togglePlaying"></text>
+  <text class="iconfont icon-xiayishou" bindtap="onNext"></text>
+ </view>
+
+</view>

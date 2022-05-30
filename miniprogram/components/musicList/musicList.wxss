@@ -1,0 +1,30 @@
+/* components/musicList/musicList.wxss */
+.container {
+    display: flex;
+    padding: 14rpx 20rpx;
+    align-items: center;
+}
+
+.index {
+    color: #888;
+    font-size: 34rpx;
+    width: 80rpx;
+}
+.info {
+    flex-grow: 1;
+    width: 0;
+}
+.name {
+    font-size: 34rpx;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.singer {
+    margin-top: 5rpx;
+    font-size: 28 rpx;
+    color:#888
+}
+.playing view, .playing text{
+    color: #d43c33;
+}

@@ -1,0 +1,17 @@
+<!--pages/blog/blog.wxml-->
+<view class="container" >
+<!-- 头部 -->
+<view class="header">
+  <!-- 发布 -->
+ <view class="publish" bindtap="onPublish">
+ <i class="iconfont icon-fabu"></i></view>
+ <!-- 搜索 -->
+ <view class="search">
+ <x-search></x-search>
+
+<!-- 底部弹出层 -->
+  <x-modal modalShow="{{modalShow}}"></x-modal>
+ </view>
+</view>
+</view>
+
