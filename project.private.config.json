@@ -45,6 +45,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/blog-edit/blog-edit",
+                    "query": "nickName=%E5%BE%AE%E4%BF%A1%E7%94%A8%E6%88%B7&avatarUrl=https%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FPOgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg%2F132",
+                    "scene": null,
+                    "launchMode": "default"
                 }
             ]
         }

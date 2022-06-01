@@ -10,11 +10,44 @@ Page({
     },
     //发布功能
     onPublish() {
-        this.setData({
-            modalShow:true
-        })
+    //    判断用户是否授权
+   /*  this.setData({
+        modalShow:true
+    }) */
+    wx.getSetting({
+      success:(res)=>{
+          console.log(res);
+          if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                success:(res)=>{
+                    this.loginSuccess({
+                        detail:res.userInfo
+                    })
+                }
+              })
+          }
+          else {
+              this.setData({
+                  modalShow: true,
+              })
+          }
+      }
+    })
             
-        
+         
+    },
+    loginSuccess(event){
+        const detail = event.detail
+        console.log(detail);
+        wx.navigateTo({
+          url: `../blog-edit/blog-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
+        })
+    },
+    loginFail(){
+        wx.showModal({
+            title:'授权用户才能发布',
+            content:'',
+        })
     },
     /**
      * 生命周期函数--监听页面加载

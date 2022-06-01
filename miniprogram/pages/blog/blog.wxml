@@ -10,7 +10,11 @@
  <x-search></x-search>
 
 <!-- 底部弹出层 -->
-  <x-modal modalShow="{{modalShow}}"></x-modal>
+  <x-login modalShow="{{modalShow}}" 
+  bindloginSuccess="loginSuccess"
+  bindloginFail = "loginFail"
+  >
+  </x-login>
  </view>
 </view>
 </view>
