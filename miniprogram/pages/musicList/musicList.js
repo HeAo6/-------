@@ -16,7 +16,7 @@ Page({
         wx.showLoading({
             title: '加载中...',
           })
-        console.log(options);
+        // console.log(options);
        
         wx.cloud.callFunction({
             name:'music',
@@ -25,7 +25,7 @@ Page({
                 $url: 'musicList'
             }
         }).then((res)=>{
-            console.log(res.result);
+            // console.log(res.result);
             const pl = res.result.playlist
             this.setData({
                 musicList:pl.tracks,
@@ -36,6 +36,8 @@ Page({
             })
             this._setMusiclist()
             wx.hideLoading()
+        }).catch(e=>{
+            console.log('错误了:', e)
         })
        
     },

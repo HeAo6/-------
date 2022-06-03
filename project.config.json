@@ -2,7 +2,7 @@
     "miniprogramRoot": "miniprogram/",
     "cloudfunctionRoot": "cloudfunctions/",
     "setting": {
-        "urlCheck": true,
+        "urlCheck": false,
         "es6": true,
         "enhance": true,
         "postcss": true,
@@ -41,7 +41,7 @@
     },
     "appid": "wx0567ae3ca8ad6783",
     "projectname": "wx-imooc",
-    "libVersion": "2.14.1",
+    "libVersion": "2.23.4",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {
         "search": {

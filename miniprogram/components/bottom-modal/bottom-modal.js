@@ -8,7 +8,7 @@ Component({
     },
     lifetimes:{
         ready(){
-            console.log('bottom',this.data.modalShow);
+            // console.log('bottom',this.data.modalShow);
         }
     },
     options:{

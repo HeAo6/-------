@@ -1,6 +1,13 @@
 // pages/blog-edit/blog-edit.js
 const MAX_WORDS_NUM = 140 //判断输入字数个数
 const MAX_IMG_NUM = 9 //最大上传数量
+
+const db = wx.cloud.database({
+    env: 'cloud1-6g57yqtg9389de25'
+})
+//输入的文字内容
+let content = ''
+let userInfo = {}
 Page({
 
     /**
@@ -21,6 +28,7 @@ Page({
         this.setData({
             wordsNum
         })
+        content = e.detail.value
     },
     onFocus(e){
         console.log(e);
@@ -79,12 +87,26 @@ Page({
         console.log(e.target.dataset.imgSrc);
     },
     send(){
+        if (content.trim() === '') {
+            wx.showModal({
+              title:'请输入内容',
+              content:''
+            })
+            return 
+        }
+        wx.showLoading({
+          title: '发布中...',
+          mask:true
+        })
+        let promiseArr = []
+        let fileIds= []
         // 数据存储到云数据库
         // 数据库：内容、图片failID、用户openID 头像 昵称 时间
         // 图片-> 云数据库 fileId 云文件
         // 图片上传
         //云存储上传图片只能单个上传，需要通过循环
         for( let i=0;i<this.data.images.length;i++){
+         let p = new Promise((reslove,reject)=>{
             let item = this.data.images[i]
             let suffix = /\.\w+$/.exec(item)[0]
             wx.cloud.uploadFile({
@@ -94,16 +116,53 @@ Page({
                 filePath:item,
                 success:(res)=>{
                     console.log(res);
-                },  
+                    fileIds = fileIds.concat(res.fileID)
+                    reslove()
+                },
+                fail:(err)=>{
+                    console.log(err);
+                    reject()
+                }  
+                })   
             })
+            promiseArr.push(p)
         }
+        //存入到云数据库
+        Promise.all(promiseArr).then(res=>{
+            db.collection('blog').add({
+              data: {
+                ...userInfo,
+                content,
+                img: fileIds,
+                createTime:db.serverDate(), //服务端时间
+              }
+            }).then(res=>{
+                wx.hideLoading()
+                wx.showToast({
+                  title: '发布成功',
+                })
+                //返回blog页面，并且刷新数据
+                wx.navigateBack()
+                //返回所有的界面
+                const pages = getCurrentPages()
+                //取到上一个界面
+                const prevPage = pages[pages.length-2]
+                prevPage.onPullDownRefresh()
+            })
+        }).catch(res=>{
+            wx.hideLoading()
+            wx.showToast({
+              title: '发布失败',
+            })
+        })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options);
+        // console.log(options);
+        userInfo = options
     },
 
     /**

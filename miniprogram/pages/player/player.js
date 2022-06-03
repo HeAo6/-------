@@ -70,13 +70,14 @@ Page({
           }
         }).then(res=>{
           // console.log(res);
+          // 判断用户的播放权限
           let result = JSON.parse(res.result)
-          // 判断是否为vip歌曲给孕妇提示
-          if (result.data[0].url === null) {
+          console.log(result);
+          if (result.data[0].url == null) {
             wx.showToast({
-              title: '用户无权限播放',
+              title: '无权限播放',
             })
-            return 
+            return
           }
          if (!this.data.isSame) {
             //自动播放音乐通过设置地址

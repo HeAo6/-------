@@ -13,7 +13,7 @@ Component({
      */
     lifetimes:{
         ready(){
-            console.log(this.data.modalShow);
+            // console.log(this.data.modalShow);
         }
     },
     data: {

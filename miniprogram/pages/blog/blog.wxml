@@ -1,21 +1,27 @@
-<!--pages/blog/blog.wxml-->
-<view class="container" >
-<!-- 头部 -->
-<view class="header">
-  <!-- 发布 -->
- <view class="publish" bindtap="onPublish">
- <i class="iconfont icon-fabu"></i></view>
- <!-- 搜索 -->
- <view class="search">
- <x-search></x-search>
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="publish-container" bind:tap="onPublish">
+      <i class="iconfont icon-fabu"></i>
+    </view>
+    <view class="search-container">
+      <x-search iconfont="iconfont" icon-sousuo="icon-sousuo" bind:search="onSearch" />
+    </view>
+  </view>
 
-<!-- 底部弹出层 -->
-  <x-login modalShow="{{modalShow}}" 
-  bindloginSuccess="loginSuccess"
-  bindloginFail = "loginFail"
-  >
+  <!-- 博客卡片列表 -->
+  <view class="blog-list">
+    <block wx:for="{{blogList}}" wx:key="_id">
+      <view class="blog-panel">
+        <x-blog-card blog="{{item}}" data-blogid="{{item._id}}" bind:tap="goComment" />
+      </view>
+    </block>
+  </view>
+
+
+  <!-- 底部弹出层 -->
+  <x-login modalShow="{{modalShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail">
+
   </x-login>
- </view>
-</view>
 </view>
 
